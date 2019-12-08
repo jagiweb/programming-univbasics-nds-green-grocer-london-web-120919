@@ -4,10 +4,11 @@ def find_item_by_name_in_collection(name, collection)
   while i < collection.length do
     if collection[i][name]
       return collection[i][name]
+    else
+      nil
     end
     i += 1
   end
-  return nil
   #
   # Consult README for inputs and outputs
 end
