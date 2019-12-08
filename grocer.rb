@@ -14,14 +14,14 @@ def find_item_by_name_in_collection(name, collection)
 end
 
 def consolidate_cart(cart)
-  consolidated_cart = []
+  collection_item = []
   i = 0
   while i < cart.length
-    consolidated_cart[i] = cart[i]
-    if consolidated_cart[i][:count] == 1
-       consolidated_cart[i][:count] += 1
+    collection_item[i] = cart[i]
+    if collection_item[i][:count] == 1
+       collection_item[i][:count] += 1
      else
-       consolidated_cart[i][:count] = 1
+       collection_item[i][:count] = 1
     end
 
     i += 1
