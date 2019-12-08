@@ -79,8 +79,12 @@ def apply_clearance(cart)
     if cart[i][:clearance] == true
       cart[i][:price] = cart[i][:price] - cart[i][:price]*0.20
       new_cart_with_clearance << cart[i]
+    else
+      new_cart_with_clearance << cart[i]
     end
+    i += 1
   end
+  new
 end
 
 def checkout(cart, coupons)
