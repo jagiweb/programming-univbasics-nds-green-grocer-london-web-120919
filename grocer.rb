@@ -1,5 +1,12 @@
 def find_item_by_name_in_collection(name, collection)
   # Implement me first!
+  while i < collection.length do
+    if collection[i] == name
+      return collection[i]
+    end
+    i += 1
+  end
+  return nil
   #
   # Consult README for inputs and outputs
 end
