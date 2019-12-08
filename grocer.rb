@@ -37,18 +37,17 @@ end
 def apply_coupons(cart, coupons)
   new_cart_with_coupons = []
   i = 0
-  while i < cart.length
-    new_cart = consolidate_cart(new_cart_with_coupons)
+  while i < coupons.length
+    new_cart = find_item_by_name_in_collection(coupons[i][:item], cart)
     y = 0
     while y < new_cart.length
       if new_cart[i][:item] == coupons[y][:item]
-        if new_cart[i][:count] > coupons[y][:num]
+        if new_cart[i][:count] >= coupons[y][:num]
           new_cart[i][:count] - coupons[y][:num]
           new_cart_with_coupons << new_cart[i]
           new_cart_with_coupons[i + 1] = new_cart[i]
-          new_cart_with_coupons[i +1][:item] = new_cart[i][:item] + " W/COUPON"
+          new_cart_with_coupons[i + 1][:item] = new_cart[i][:item] + " W/COUPON"
           new_cart_with_coupons[i + 1][:num] = coupons[y][:num]
-
         end
       end
     end
