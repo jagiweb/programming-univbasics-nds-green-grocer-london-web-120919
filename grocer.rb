@@ -34,30 +34,42 @@ def consolidate_cart(cart)
   collection_item
 end
 
+# while y < new_cart.length
+#   if new_cart[i][:item] == coupons[y][:item]
+#     if new_cart[i][:count] >= coupons[y][:num]
+#       new_cart[i][:count] - coupons[y][:num]
+#       new_cart_with_coupons << new_cart[i]
+#       new_cart_with_coupons[i + 1] = new_cart[i]
+#       new_cart_with_coupons[i + 1][:item] = new_cart[i][:item] + " W/COUPON"
+#       new_cart_with_coupons[i + 1][:num] = coupons[y][:num]
+#     end
+#   end
+
 def apply_coupons(cart, coupons)
   new_cart_with_coupons = []
   i = 0
   while i < coupons.length
-    new_cart = find_item_by_name_in_collection(coupons[i][:item], cart)
+    cart_item = find_item_by_name_in_collection(coupons[i][:item], cart)
     new_coupon_name = "#{coupons[i][:item]} W/COUPON"
-    item_with_coupon = find_item_by_name_in_collection(new_coupon_name, cart)
-    y = 0
-    while y < new_cart.length
-      if new_cart[i][:item] == coupons[y][:item]
-        if new_cart[i][:count] >= coupons[y][:num]
-          new_cart[i][:count] - coupons[y][:num]
-          new_cart_with_coupons << new_cart[i]
-          new_cart_with_coupons[i + 1] = new_cart[i]
-          new_cart_with_coupons[i + 1][:item] = new_cart[i][:item] + " W/COUPON"
-          new_cart_with_coupons[i + 1][:num] = coupons[y][:num]
-        end
+    cart_item_with_coupon = find_item_by_name_in_collection(new_coupon_name, cart)
+    if cart_item && new_cart[:count] >= coupons[i][:num]
+      if item_with_coupon
+        item_with_coupon[:count] += coupons[i][:num]
+        cart_item[:count] -= coupons[i][:num]
+      else
+        cart_item_with_coupon = {
+          :item => new_coupon_name,
+          :price => coupons[i][:cost] / coupons[i][:num],
+          :count => coupons[i][:num],
+          :clearance => cart_item[:clearance]
+        }
+        cart << cart_item_with_coupon
+        cart_item[:count] -= coupons[i][:num]
       end
     end
     i +=1
   end
-  # Consult README for inputs and outputs
-  #
-  # REMEMBER: This method **should** update cart
+  cart
 end
 
 def apply_clearance(cart)
