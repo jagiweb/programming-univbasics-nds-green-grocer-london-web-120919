@@ -40,8 +40,13 @@ def apply_coupons(cart, coupons)
   while i < cart.length
     new_cart = consolidate_cart(new_cart_with_coupons)
     y = 0
-    while condition
-
+    while y < new_cart.length
+      if new_cart[i][:item] == coupons[y][:item]
+        if new_cart[i][:count] > coupons[y][:num]
+          new_cart[i][:item] = new_cart[i][:item] + " W/COUPON"
+          new_cart[i][:num] =
+        end
+      end
     end
     i +=1
   end
