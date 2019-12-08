@@ -46,8 +46,8 @@ def apply_coupons(cart, coupons)
           new_cart[i][:count] - coupons[y][:num]
           new_cart_with_coupons << new_cart[i]
           new_cart_with_coupons[i + 1] = new_cart[i]
-          new_cart_with_coupons[i][:item] = new_cart[i][:item] + " W/COUPON"
-          new_cart_with_coupons[i][:num] = coupons[y][:num]
+          new_cart_with_coupons[i +1][:item] = new_cart[i][:item] + " W/COUPON"
+          new_cart_with_coupons[i + 1][:num] = coupons[y][:num]
 
         end
       end
