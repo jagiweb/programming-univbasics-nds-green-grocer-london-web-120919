@@ -20,10 +20,10 @@ def consolidate_cart(cart)
     collection_item[i] = cart[i]
     if collection_item[i][:count] == 1
        collection_item[i][:count] += 1
-     else 
+     else
        collection_item[i][:count] = 1
-    end 
-         
+    end
+
     i += 1
   end
   #
