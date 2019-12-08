@@ -43,8 +43,12 @@ def apply_coupons(cart, coupons)
     while y < new_cart.length
       if new_cart[i][:item] == coupons[y][:item]
         if new_cart[i][:count] > coupons[y][:num]
-          new_cart[i][:item] = new_cart[i][:item] + " W/COUPON"
-          new_cart[i][:num] =
+          new_cart[i][:count] - coupons[y][:num]
+          new_cart_with_coupons << new_cart[i]
+          new_cart_with_coupons[i + 1] = new_cart[i]
+          new_cart_with_coupons[i][:item] = new_cart[i][:item] + " W/COUPON"
+          new_cart_with_coupons[i][:num] = coupons[y][:num]
+          
         end
       end
     end
