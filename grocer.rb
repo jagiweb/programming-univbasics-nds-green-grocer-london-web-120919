@@ -19,10 +19,16 @@ def consolidate_cart(cart)
   while i < cart.length
     new_item = def find_item_by_name_in_collection(cart[i][:item], collection_item)
     collection_item[i] = cart[i]
-    if collection_item[i][:count] == 1
-       collection_item[i][:count] += 1
+    if new_item != nil
+      new_item[:count] += 1
      else
-       collection_item[i][:count] = 1
+       #new_item[:count] = 1
+       new_item = {
+         :item => cart[i][:item]
+         :price => cart[i][:price]
+         :clearance => cart[i][:clearance]
+         :count => 1
+       }
     end
 
     i += 1
